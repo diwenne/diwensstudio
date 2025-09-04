@@ -2,14 +2,16 @@ function Tier(props: { name: string; price: string; desc: string; bullets: strin
   const { name, price, desc, bullets, cta = "get started" } = props;
   return (
     <div className="tier card">
-      <h3>{name}</h3>
-      <p className="price" style={{ marginTop: ".35rem" }}>{price}</p>
-      <p style={{ color: "var(--fg-dim)", marginTop: "0.5rem" }}>{desc}</p>
-      <ul style={{ marginTop: "1rem", paddingLeft: "1.1rem", color: "var(--fg-muted)" }}>
-        {bullets.map(b => <li key={b} style={{ marginBottom: ".4rem" }}>• {b}</li>)}
+      <h4 className="tier-title">{name.toLowerCase()}</h4>
+      <p className="price">{price}</p>
+      <p className="tier-desc">{desc}</p>
+      <ul className="tier-list">
+        {bullets.map((b) => (
+          <li key={b}>{b}</li>
+        ))}
       </ul>
       <div className="cta">
-        <a className="btn btn-primary" href="/contact">{cta}</a>
+        <a className="btn btn-primary pill" href="/contact">{cta}</a>
       </div>
     </div>
   );
@@ -18,7 +20,7 @@ function Tier(props: { name: string; price: string; desc: string; bullets: strin
 export default function Pricing() {
   return (
     <section className="section">
-      <div className="container stack" style={{ ['--stack-gap' as any]:'1rem' }}>
+      <div className="container stack" style={{ ['--stack-gap' as any]: '1rem' }}>
         <h2>pricing</h2>
         <p style={{ color: "var(--fg-muted)", maxWidth: "70ch" }}>
           Simple tiers. Every project includes analytics, on-page SEO, and responsive design.
@@ -26,23 +28,40 @@ export default function Pricing() {
 
         <div className="pricing">
           <Tier
-            name="starter"
-            price="$899"
-            desc="Clean one-pager to launch fast."
-            bullets={["1–2 sections hero site", "copy polish", "deploy + domain hookup"]}
+            name="portfolio"
+            price="from $200"
+            desc="Showcase your work online."
+            bullets={[
+              "1–3 sections",
+              "project / gallery showcase",
+              "front-end polish & design",
+              "domain + hosting setup",
+              "responsive layout",
+            ]}
           />
           <Tier
-            name="standard"
-            price="$1,999"
-            desc="Multi-section site for small businesses."
-            bullets={["up to 6 sections", "booking / forms", "CMS-ready structure", "performance pass"]}
+            name="business"
+            price="from $600"
+            desc="Multi-page site for growth."
+            bullets={[
+              "up to 6 pages",
+              "booking / forms",
+              "CMS-ready structure",
+              "domain + hosting setup",
+              "SEO & performance tuned",
+            ]}
           />
           <Tier
-            name="studio"
-            price="from $3,500"
-            desc="Custom design system, animations, case studies."
-            bullets={["bespoke visuals", "CMS + blog or case studies", "component library", "1 month post-launch care"]}
-            cta="inquire"
+            name="other / custom"
+            price="varies"
+            desc="Tailored to unique ideas."
+            bullets={[
+              "event microsites",
+              "landing pages",
+              "creative builds",
+              "domain + hosting setup",
+            ]}
+            cta="let’s talk"
           />
         </div>
       </div>
