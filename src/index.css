@@ -434,3 +434,22 @@ a.submit-button:visited {
   text-transform: lowercase;
   color: var(--fg);
 }
+
+
+/* extras */
+
+/* Make hero fill the screen (minus sticky navbar) and center content */
+.hero {
+  min-height: calc(100vh - 72px);   /* 72px = .navbar-inner height */
+  display: grid;
+  align-items: center;               /* vertically center text + buttons */
+  padding-block: clamp(var(--s-20), 14vh, var(--s-24)); /* keep nice breathing room */
+}
+
+/* Mobile-safe viewport (prevents iOS URL bar from shrinking hero) */
+@media (max-width: 900px) {
+  .hero {
+    min-height: calc(100svh - 72px);
+    padding-block: clamp(var(--s-16), 16vh, var(--s-24));
+  }
+}

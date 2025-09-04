@@ -1,9 +1,34 @@
-type Item = { title: string; subtitle: string; img?: string };
+// ✅ Imports
+import diwenPortfolio from "../assets/diwen-portfolio.png";
+import wilsonPortfolio from "../assets/wilson-portfolio.png";
+import enhancedBadminton from "../assets/enhanced-badminton.png";
+
+type Item = { 
+  title: string; 
+  subtitle: string; 
+  img?: string; 
+  link?: string; 
+};
 
 const WORK: Item[] = [
-  { title: "QuantumLeap", subtitle: "SaaS landing • brand + build", img: "/src/assets/sample-1.jpg" },
-  { title: "Northwood Bakery", subtitle: "local business site • online orders", img: "/src/assets/sample-2.jpg" },
-  { title: "Arclight Studio", subtitle: "portfolio • motion & case studies", img: "/src/assets/sample-3.jpg" },
+  { 
+    title: "Diwen’s Portfolio", 
+    subtitle: "portfolio • design & development", 
+    img: diwenPortfolio, 
+    link: "https://diwenhuang.ca" 
+  },
+  { 
+    title: "Wilson’s Portfolio", 
+    subtitle: "portfolio • design & development", 
+    img: wilsonPortfolio, 
+    link: "https://wilsonhuang.ca" 
+  },
+  { 
+    title: "Enhanced Badminton", 
+    subtitle: "club website • programs & coaching", 
+    img: enhancedBadminton, 
+    link: "https://enhancedbadminton.vercel.app" 
+  },
 ];
 
 export default function FeaturedWork() {
@@ -17,16 +42,26 @@ export default function FeaturedWork() {
 
         <div className="project-grid">
           {WORK.map((w) => (
-            <article key={w.title} className="card project">
-              <div className="project-thumb" style={{
-                backgroundImage: w.img ? `url(${w.img})` : undefined,
-                backgroundSize: "cover", backgroundPosition: "center"
-              }} />
+            <a 
+              key={w.title} 
+              href={w.link} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="card project"
+            >
+              <div 
+                className="project-thumb" 
+                style={{
+                  backgroundImage: w.img ? `url(${w.img})` : undefined,
+                  backgroundSize: "cover", 
+                  backgroundPosition: "center"
+                }} 
+              />
               <div className="project-body">
                 <div className="project-title">{w.title}</div>
                 <div className="project-sub">{w.subtitle}</div>
               </div>
-            </article>
+            </a>
           ))}
         </div>
       </div>
