@@ -355,3 +355,82 @@ a.submit-button:visited {
   min-width: 9.5rem;
   text-align:center;
 }
+
+
+/* --- Comparison table card --- */
+.compare.card {
+  padding: var(--s-8);
+  border: 1px solid var(--bd);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.02));
+  box-shadow: var(--shadow-sm);
+}
+
+/* mobile-friendly horizontal scroll */
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 14px;
+  border: 1px solid var(--bd);
+}
+
+/* table visuals */
+.cmp-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 680px; /* forces horizontal scroll on small screens */
+  font-size: 0.95rem;
+}
+
+.cmp-table thead th {
+  text-align: left;
+  padding: .9rem 1rem;
+  color: var(--fg);
+  font-weight: 900;
+  letter-spacing: .01em;
+  background: color-mix(in oklab, var(--bg), #0e1422 22%);
+  border-bottom: 1px solid var(--bd);
+}
+
+.cmp-table tbody th {
+  text-transform: lowercase;
+  font-weight: 900;
+  color: var(--fg);
+  letter-spacing: .01em;
+  padding: .85rem 1rem;
+  border-bottom: 1px solid var(--bd);
+  background: rgba(255,255,255,.02);
+  width: 22%;
+}
+
+.cmp-table td {
+  color: var(--fg-dim);
+  padding: .85rem 1rem;
+  border-bottom: 1px solid var(--bd);
+  vertical-align: top;
+}
+
+/* subtle zebra */
+.cmp-table tbody tr:nth-child(2n) td,
+.cmp-table tbody tr:nth-child(2n) th {
+  background: rgba(255,255,255,.015);
+}
+
+.cmp-note {
+  color: var(--fg-muted);
+  font-size: .9rem;
+  margin-top: var(--s-4);
+}
+
+/* center align criteria column */
+.cmp-table thead th.criteria-col,
+.cmp-table tbody th.criteria-col {
+  text-align: center;
+}
+
+/* bold for emphasis */
+.cmp-table tbody th.criteria-col {
+  font-weight: 900;
+  text-transform: lowercase;
+  color: var(--fg);
+}

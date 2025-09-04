@@ -1,8 +1,8 @@
 const ITEMS = [
-  { t: "senior craft", d: "Design-first approach with code that sings: semantic, accessible, maintainable." },
-  { t: "speed & SEO", d: "Lighthouse-friendly builds with best-practice metadata, image pipelines, and caching." },
-  { t: "conversion", d: "Clear narratives and calls-to-action that turn visitors into clients or fans." },
-  { t: "handoff", d: "You get docs, source, and a tidy repo so iteration is painless." }
+  { t: "priced sanely", d: "Way cheaper than agency alternatives—transparent, no surprise add-ons." },
+  { t: "you own it", d: "Full codebase, repo access, and assets. No lock-in, ever." },
+  { t: "flexible scope", d: "From tiny tweaks to multi-page builds—iterate at your pace." },
+  { t: "fast & thoughtful", d: "Near-instant replies and creative, modern designs with intent." }
 ];
 
 export default function WhyChooseUs() {
@@ -11,13 +11,13 @@ export default function WhyChooseUs() {
       <div className="container stack" style={{ ['--stack-gap' as any]: '1rem' }}>
         <h2>why choose diwen</h2>
         <p style={{ color: "var(--fg-muted)", maxWidth: "70ch" }}>
-          Harvard-professor energy. Modern taste. Straight-to-the-point execution.
+          fair pricing. ownership. flexibility. creative polish.
         </p>
 
         <div className="features">
           {ITEMS.map(i => (
             <article key={i.t} className="feature">
-              <h3 style={{ marginBottom: ".35rem" }}>{i.t}</h3>
+              <h3 style={{ marginBottom: ".35rem", textTransform: "lowercase" }}>{i.t}</h3>
               <p style={{ color: "var(--fg-dim)" }}>{i.d}</p>
             </article>
           ))}
