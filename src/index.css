@@ -478,3 +478,11 @@ a.submit-button:visited {
   display: block;
   border-radius: 0; /* ✅ remove double rounding */
 }
+
+
+/* bg */
+.darkveil-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
