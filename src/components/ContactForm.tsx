@@ -1,23 +1,48 @@
-import { useState } from "react";
+import { useRef, useState, type FormEvent } from "react";
+import emailjs from "@emailjs/browser";
 
 export default function ContactForm() {
-  const [status, setStatus] = useState<"idle" | "sent">("idle");
+  const formRef = useRef<HTMLFormElement | null>(null);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
-  function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus("sent");
+    if (!formRef.current) return;
+
+    setStatus("sending");
+    try {
+      await emailjs.sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+      setStatus("sent");
+      formRef.current.reset();
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      setStatus("error");
+    }
   }
 
   return (
-    <form onSubmit={onSubmit} className="stack" style={{ ['--stack-gap' as any]: '1rem' }}>
+    <form ref={formRef} onSubmit={onSubmit} className="stack" style={{ ["--stack-gap" as any]: "1rem" }}>
+      {/* Honeypot anti-spam */}
+      <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
+
       <div className="grid" style={{ gridTemplateColumns: "1fr 1fr" }}>
-        <input className="input" placeholder="your name" required />
-        <input className="input" placeholder="email" type="email" required />
+        <input className="input" name="user_name" placeholder="your name" required />
+        <input className="input" type="email" name="user_email" placeholder="email" required />
       </div>
-      <input className="input" placeholder="company / project (optional)" />
-      <textarea className="textarea" placeholder="tell me about your project…" />
-      <button className="btn btn-primary" type="submit">
-        {status === "sent" ? "thanks — I’ll reply shortly" : "send inquiry"}
+
+      <input className="input" name="company" placeholder="company / project (optional)" />
+      <textarea className="textarea" name="message" placeholder="tell me about your project…" required />
+
+      <button className="btn btn-primary" type="submit" disabled={status === "sending"}>
+        {status === "idle" && "send inquiry"}
+        {status === "sending" && "sending…"}
+        {status === "sent" && "thanks — I’ll reply shortly"}
+        {status === "error" && "something went wrong — try again"}
       </button>
     </form>
   );
