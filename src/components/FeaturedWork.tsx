@@ -1,13 +1,15 @@
 // ✅ Imports
-import diwenPortfolio from "../assets/diwen-portfolio.mp4";
+import diwenPortfolioVideo from "../assets/diwen-portfolio.mp4";
+import diwenPortfolio from "../assets/diwen-portfolio.png";
 import wilsonPortfolio from "../assets/wilson-portfolio.png";
 import enhancedBadminton from "../assets/enhanced-badminton.png";
+import { useEffect, useState } from "react";
 
 type Item = {
   title: string;
   subtitle: string;
-  img?: string;
-  video?: string;
+  img?: string;    // default preview
+  video?: string;  // optional desktop video
   link?: string;
 };
 
@@ -15,7 +17,8 @@ const WORK: Item[] = [
   {
     title: "Diwen’s Portfolio",
     subtitle: "portfolio • design & development",
-    video: diwenPortfolio, // mp4
+    img: diwenPortfolio,           // ✅ static preview
+    video: diwenPortfolioVideo,    // ✅ desktop enhancement
     link: "https://diwenhuang.ca",
   },
   {
@@ -33,6 +36,13 @@ const WORK: Item[] = [
 ];
 
 export default function FeaturedWork() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(hover: none) and (pointer: coarse)");
+    setIsMobile(mq.matches);
+  }, []);
+
   return (
     <section id="featured" className="section">
       <div
@@ -55,7 +65,7 @@ export default function FeaturedWork() {
               className="card project"
             >
               <div className="project-thumb">
-                {w.video ? (
+                {w.video && !isMobile ? (
                   <video
                     className="project-video"
                     src={w.video}
@@ -63,28 +73,21 @@ export default function FeaturedWork() {
                     muted
                     playsInline
                     preload="auto"
-                    // Show first frame by default
                     onLoadedData={(e) => {
                       const v = e.currentTarget;
-                      // ensure metadata is ready, then lock to frame 0
                       try {
                         v.currentTime = 0;
                       } catch {}
                       v.pause();
                     }}
-                    // Hover behavior (desktop)
                     onMouseEnter={(e) => e.currentTarget.play()}
                     onMouseLeave={(e) => e.currentTarget.pause()}
                   />
                 ) : (
-                  <div
-                    style={{
-                      backgroundImage: w.img ? `url(${w.img})` : undefined,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                      width: "100%",
-                      height: "100%",
-                    }}
+                  <img
+                    src={w.img}
+                    alt={w.title}
+                    className="project-image"
                   />
                 )}
               </div>
