@@ -3,6 +3,7 @@ import diwenPortfolioVideo from "../assets/diwen-portfolio.mp4";
 import diwenPortfolio from "../assets/diwen-portfolio.png";
 import wilsonPortfolio from "../assets/wilson-portfolio.png";
 import enhancedBadminton from "../assets/enhanced-badminton.png";
+import stemsf from "../assets/stemsf.png"; 
 import { useEffect, useState } from "react";
 
 type Item = {
@@ -32,6 +33,12 @@ const WORK: Item[] = [
     subtitle: "club website • programs & coaching",
     img: enhancedBadminton,
     link: "https://enhancedbadminton.vercel.app",
+  },
+  {
+    title: "STEMsf",
+    subtitle: "non-profit • stem education platform",
+    img: stemsf,                            // ✅ preview image
+    link: "https://stemsf.org",             // ✅ link
   },
 ];
 
