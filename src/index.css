@@ -265,6 +265,31 @@ a.submit-button:visited {
 .footer .brand{ color:#fff; }            /* footer wordmark white */
 .footer .brand .dot{ color:var(--brand-baby); }  /* footer dot baby blue */
 
+/* Social links */
+.social-links {
+  display: flex;
+  gap: var(--s-4);
+  margin-top: var(--s-4);
+}
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius);
+  background: color-mix(in oklab, var(--bg), white 4%);
+  color: var(--fg-muted);
+  transition: all 0.2s ease;
+  border: 1px solid var(--bd);
+}
+.social-links a:hover {
+  background: color-mix(in oklab, var(--brand), transparent 85%);
+  border-color: var(--brand);
+  color: var(--brand);
+  transform: translateY(-2px);
+}
+
 /* ========== 12) Contact =================================================== */
 .contact-layout{
   display:grid;
