@@ -3,7 +3,10 @@ import diwenPortfolioVideo from "../assets/diwen-portfolio.mp4";
 import diwenPortfolio from "../assets/diwen-portfolio.png";
 import wilsonPortfolio from "../assets/wilson-portfolio.png";
 import enhancedBadminton from "../assets/enhanced-badminton.png";
-import stemsf from "../assets/stemsf.png"; 
+import stemsf from "../assets/stemsf.png";
+import smashspeed from "../assets/smashspeed.png";
+import haoPortfolio from "../assets/hao-portfolio.png";
+import freakysaur from "../assets/freakysaur.png";
 import { useEffect, useState } from "react";
 
 type Item = {
@@ -16,14 +19,32 @@ type Item = {
 
 const WORK: Item[] = [
   {
-    title: "Diwen’s Portfolio",
+    title: "Diwen's Portfolio",
     subtitle: "portfolio • design & development",
     img: diwenPortfolio,           // ✅ static preview
     video: diwenPortfolioVideo,    // ✅ desktop enhancement
     link: "https://diwenhuang.ca",
   },
   {
-    title: "Wilson’s Portfolio",
+    title: "SmashSpeed AI",
+    subtitle: "landing page • app showcase",
+    img: smashspeed,
+    link: "https://smashspeed.ca",
+  },
+  {
+    title: "Hao's Portfolio",
+    subtitle: "portfolio • swe & aesthetic design",
+    img: haoPortfolio,
+    link: "https://haocui.dev",
+  },
+  {
+    title: "Freakysaur",
+    subtitle: "landing page • hackathon game",
+    img: freakysaur,
+    link: "https://freakysaur.vercel.app",
+  },
+  {
+    title: "Wilson's Portfolio",
     subtitle: "portfolio • design & development",
     img: wilsonPortfolio,
     link: "https://wilsonhuang.ca",
